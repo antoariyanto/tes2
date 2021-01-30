@@ -1,0 +1,36 @@
+//Bahasa pemrograman kotin
+
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+fun main(args: Array<String>){
+    println("========INPUT========")
+    val current = LocalDateTime.now()
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+    val formatted = current.format(formatter)
+    
+    print("nama Kasir : ")
+    val kasir = readLine()
+    print("harga nasi : ")
+    val nasi = Integer.valueOf(readLine())
+    print("harga lauk : ")
+    val lauk = readLine()!!.toInt()
+    print("harga minum : ")
+    val minum = Integer.valueOf(readLine())
+    val total = nasi+lauk+minum
+ 
+    println("==============================")
+    println("    Warung Anto        ")
+    val biografi = """
+    
+    TANGGAL  :   $formatted
+    NAMA KASIR :                 $kasir 
+    ===================================
+    Nasi        : ...................$nasi
+    Lauk        : ...................$lauk
+    Minum       : ...................$minum
+    Total Nilai : ...................$total
+    
+    
+    """.trimIndent()
+    print(biografi)
+}
