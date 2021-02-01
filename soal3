@@ -80,7 +80,6 @@ func main() {
     }
   }
 ]`
-
 	// Declared an empty interface of type Array
 	var results []map[string]interface{}
 
@@ -89,21 +88,22 @@ func main() {
 
 	//articles := result["articles"].(map[string]interface{})
 
-	for key, result := range results {
-
+		for key, result := range results {
+		placement := result["placement"].(map[string]interface{})
 		fmt.Println("Reading Value for Key :", key)
 		//Reading each value by its key
 		fmt.Println("Id :", result["inventory_id"],
-			"\n name:", result["name"],
-			"\n type:", result["type"],
-			"\n tags:", result["tags"],
-			"\n purchased_at:", result["purchased_at"],
-			"\n placement:", result["placement"])	
-
+			"\n- Name :", result["name"],
+			"\n- profile:", result["type"],
+			"\n- tags:", result["tags"],
+			"\n- purchased_at:", result["purchased_at"])
+		
+		fmt.Println("Placement:", placement["room_id"], placement["name"])
+		
+		
+		
 	}
-	
 }
-
 
 
 
