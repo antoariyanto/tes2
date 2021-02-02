@@ -1,0 +1,46 @@
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+	"os"
+)
+
+type Student struct {
+	Counter1 string `json:"counter"`
+	
+}
+
+func main() {
+
+	body := &Student{
+		counter:    "1",
+		counter:    "2",
+	}
+	
+
+	buf := new(bytes.Buffer)
+	json.NewEncoder(buf).Encode(body)
+	req, _ := http.NewRequest("POST", "localhost:8080/tes", buf)
+
+	client := &http.Client{}
+	req.Header.Add("If-None-Match", `"X-RANDOM": "93f9h3dx"`)
+	req.Header.Add("If-None-Match", `"X-RANDOM": "fe9g83jm"`)
+	res, e := client.Do(req)
+	if e != nil {
+		log.Fatal(e)
+	}
+
+	defer res.Body.Close()
+
+	fmt.Println("response Status:", res.Status)
+
+	// Print the body to the stdout
+	io.Copy(os.Stdout, res.Body)
+}
+
+
